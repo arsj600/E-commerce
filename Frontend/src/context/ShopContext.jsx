@@ -22,7 +22,10 @@ const ShopContextProvider =(props)=>{
             toast.error('Select Product Size');
             return;
         }
-
+        if(!token){
+             toast.error('Login First');
+            return;
+        }
 
         let cartData =structuredClone(cartItems);
 
@@ -54,6 +57,9 @@ const ShopContextProvider =(props)=>{
     }
 
     const getCartCount =() =>{
+            if(!token){
+            return;
+        }
         let totalCount =0;
         for (const items in cartItems){
             for(const item in cartItems[items]){
@@ -121,6 +127,10 @@ const ShopContextProvider =(props)=>{
 }
   
     const getUserCart =async (token)=>{
+            if(!token){
+             
+            return;
+        }
         try {
             
             const response =await axios.post(backendUrl+'/api/cart/get',{},{headers:{token}})
