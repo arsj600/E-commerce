@@ -65,7 +65,7 @@ const [visible ,setVisible]=useState(false);
         <img onClick={()=> setShowSearch(true)} src={assets.search_icon} className='w-5 cursor-pointer' alt='' />
    
     <div className='group relative'>
-          <img onClick={()=>token?null:navigate('/login')} src={assets.profile_icon} className='w-5 cursor-pointer '/>
+          <img onClick={()=>token?null:navigate('/login')} src={assets.profile_icon} className='w-5 min-w-5 cursor-pointer '/>
           {/* DropDown Menu */}
     {token && <div className='group-hover:block hidden absolute  right-0 pt-4 z-10'>
               <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
