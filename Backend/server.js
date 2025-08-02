@@ -22,9 +22,7 @@ const app =express();
 const port =process.env.Port ||4000;
 connectDB()
 app.use(express.json());
-app.use(cors({origin: 'https://e-commerce-frontend-kappa-pink.vercel.app',
-    credentials: true
-}));
+app.use(cors());
 
 
 
