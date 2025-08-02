@@ -4,9 +4,10 @@ import { assets } from '../assets//assets';
 import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
 
+
 const Collection = () => {
 
-  const {products,search,showSearch} =useContext(ShopContext);
+  const {products,search,showSearch,aiSearchResults, aiShowSearch} =useContext(ShopContext);
   const [showFilter,setShowFilter] =useState(false)
   const [filterProducts,setFilterProducts] =useState([]);
   const [category,setCategory] =useState([]);
@@ -40,6 +41,9 @@ const Collection = () => {
     if(showSearch &&search){
       productsCopy=productsCopy.filter(item=> item.name.toLowerCase().includes(search.toLowerCase()))
     }
+    if(aiShowSearch&&aiSearchResults){
+      productsCopy = aiSearchResults;
+    }
 
     if(category.length >0 ){
       productsCopy=productsCopy.filter(item => category.includes(item.category));
@@ -50,6 +54,7 @@ const Collection = () => {
     }
 
     setFilterProducts(productsCopy);
+    console.log("Filtered Products:", filterProducts)
   }
 
   const sortProduct=()=>{
@@ -82,7 +87,7 @@ const Collection = () => {
 
   useEffect(()=>{
     applyFilter();
-  },[category,subCategory,search,showSearch,products])
+  },[category,subCategory,search,showSearch,products,aiShowSearch,aiSearchResults])
 
   return (
     <div className='flex flex-col sm:flex sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
@@ -140,7 +145,9 @@ const Collection = () => {
       </div>
       {/* Map Products*/}
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
-          {
+          {   
+            
+
             filterProducts.map((item,index) =>(
                 <ProductItem key={index} id={item._id} name={item.name} price={item.price} image={item.image} />
             ))

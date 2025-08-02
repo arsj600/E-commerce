@@ -14,6 +14,7 @@ import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
 import { ToastContainer, toast } from 'react-toastify';
 import Verify from './pages/Verify'
+import PromptFilter from './components/PromptFilter'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
     <ToastContainer/>
     <Navbar/>
+    <PromptFilter/>
     <SearchBar/>
     <Routes>
       <Route path='/' element={<Home/>} />

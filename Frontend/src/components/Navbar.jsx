@@ -5,7 +5,7 @@ import { ShopContext } from '../context/ShopContext';
 
 const Navbar = () => {
 const [visible ,setVisible]=useState(false);
-  const {setShowSearch ,getCartCount,navigate,token,setToken,setCartItems} =useContext(ShopContext)
+  const {setShowSearch ,getCartCount,navigate,token,setToken,setCartItems,setAiShowSearch} =useContext(ShopContext)
   const adminPanel =import.meta.env.VITE_ADMIN_PANEL
   
   const logout =()=>{
@@ -62,7 +62,15 @@ const [visible ,setVisible]=useState(false);
 
       {/* Right-side icons */}
     <div className='flex items-center gap-6'>
-        <img onClick={()=> setShowSearch(true)} src={assets.search_icon} className='w-5 cursor-pointer' alt='' />
+        <img onClick={()=>{
+          setAiShowSearch(true)
+          setShowSearch(false)
+        } } src={assets.ai_icon} className='w-5 cursor-pointer' alt='' />
+
+        <img onClick={()=> {
+          setShowSearch(true)
+          setAiShowSearch(false)
+        }} src={assets.search_icon} className='w-5 cursor-pointer' alt='' />
    
     <div className='group relative'>
           <img onClick={()=>token?null:navigate('/login')} src={assets.profile_icon} className='w-5 min-w-5 cursor-pointer '/>

@@ -11,9 +11,12 @@ const ShopContextProvider =(props)=>{
     const backendUrl =import.meta.env.VITE_BACKEND_URL
     const [search,setSearch]=useState('');
     const [showSearch,setShowSearch]=useState(false);
+    const [aiShowSearch,setAiShowSearch]=useState(false);
+
     const [cartItems,setCartItems] =useState({});
     const [products,setProducts] =useState([])
     const [token,setToken] =useState('')
+    const [aiSearchResults, setAiSearchResults] = useState(null);
     const navigate =useNavigate();
 
     const addToCart =async (itemId,size) => {
@@ -159,7 +162,8 @@ const ShopContextProvider =(props)=>{
         products,currency,delivery_fee,
         search,setSearch,showSearch,setShowSearch,setCartItems,
         cartItems,addToCart,getCartCount,updateQuantity,getCartAmount,
-        navigate,backendUrl,token,setToken
+        navigate,backendUrl,token,setToken,aiSearchResults, setAiSearchResults,
+        aiShowSearch,setAiShowSearch
     }
     return (
         <ShopContext.Provider value={value}>
